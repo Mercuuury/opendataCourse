@@ -37,6 +37,9 @@ section {
 	background: #58B87F;
 	color: #F9FCFA;
 }
+.btn-shadow{
+    box-shadow: 0 0 12px #38a563;
+}
 .form-control {
     border: 0;
 }
