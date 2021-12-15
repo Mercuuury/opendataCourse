@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+@import url('db.onlinewebfonts.com/c/4fc2b2c96d39638e39651060fddfb639?family=Noto+Sans+Light');
+
+body {
+    background-color: #D9EFE2;
+    font-family: 'Noto Sans Light', sans-serif;
+}
+
+section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 35rem;
+}
+
+.search-box{
+	top: 40%;
+	left: 50%;
+	position: absolute;
+	transform: translate(-50%, -50%);
+}
+.search-title {
+    text-align: center;
+    color: black;
+}
+.search-input {
+    padding-left: 24px;
+}
+.search-input:focus{
+	outline: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+.btn.btn-search{
+	border-radius: 0;
+	height: 50px;
+	background: #58B87F;
+	color: #F9FCFA;
+}
+.form-control {
+    border: 0;
+}
+
+.autocomplete {
+    position: relative;
+    width: 100%;
+}
+.autocomplete-items {
+    position: absolute;
+    z-index: 99;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding-right: 0px;
+    width: 100%;
+}
+.autocomplete-items div {
+    padding: 10px;
+    padding-left: 24px;
+    cursor: pointer;
+    background-color: #F9FCFA;
+    color: black;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+}
+.autocomplete-items div:first-child {
+    border-top: 1px solid rgba(0, 0, 0, 0.5);
+}
+.autocomplete-items div:hover {
+    background-color: #B9E1C9;
+}
+.autocomplete-active {
+    background-color: #B9E1C9 !important;
+}
+
+#down-arrow {
+    transition: 0.5s;
+    cursor: pointer;
+}
+#down-arrow:hover {
+    transform: scale(1.1);
+}
+
+#main-info {
+    background-color: #B9E1C9;
+    height: auto;
+    min-height: 25rem;
+}
+
+.info-menu {
+    background-color: #98D3B0;
+}
+.info-menu, .info-results {
+    text-align: start;
+}
+.info-menu h3, .info-results h3 {
+    text-align: center;
+}
+.info-menu label{
+    margin-bottom: 5px;
+}
+.info-menu select {
+    margin-bottom: 1rem!important;
+    border-radius: 0;
+}
+.info-results {
+    background-color: #B9E1C9;
+}
+.list-group-item img {
+    width: 24px;
+    height: 24px;
+}
+.card {
+    margin-bottom: 2rem!important;
+    border-radius: 0;
+}
+

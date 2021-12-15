@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/style.css">
+    <title>Курсовой проект</title>
+</head>
+
+<body>
+    <section id="header" >
+        <div class="container-fluid px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
+            <div class="col-md-6 col-lg-5 col-11 mx-auto my-auto">
+                <div class="input-group form-container">
+                    <h1 class="search-title mb-5 fs-3">Найдите информацию о московских учебных учреждения и сведения об участии в олимпиадах</h1>
+                    <input type="text" id="search" name="search" class="form-control search-input" autofocus="autofocus" autocomplete="off" placeholder="Начните вводить название учебного учреждения...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-search fs-5">&nbsp;Найти&nbsp;</button>
+                    </span>
+                </div>
+                <div class="mt-5 d-flex justify-content-center">
+                    <a onClick="document.getElementById('main-info').scrollIntoView();">
+                        <img id="down-arrow" width="50px" src="source/arrow.png" alt="arrow">
+                    </a>
+                </div>
+                <p class="fs-1">&nbsp;</p>
+            </div>
+                             
+        </div>
+    </section>
+    
+    <section id="main-info" class="py-5 text-center">
+        <h2>ГБОУ Школа №1535</h2>
+        <div class="container px-5 my-5">
+            <div class="row gx-5">
+                <div class="col-lg-10 mx-auto">
+                    <div class="row gx-5 row-cols-1 row-cols-md-3">
+                        <div class="col mb-md-5 h-100">
+                            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-collection"></i></div>
+                            <h3 class="h5 fw-bolder">Полное наименование</h3>
+                            <p class="mb-0">Государственное бюджетное общеобразовательное учреждение города Москвы «Школа № 1535»</p>
+                        </div>
+                        <div class="col mb-md-5 h-100">
+                            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-building"></i></div>
+                            <h2 class="h5 fw-bolder">Тип организации</h2>
+                            <p class="mb-0">Общеобразовательная организация</p>
+                        </div>
+                        <div class="col mb-md-5 h-100">
+                            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i></div>
+                            <h2 class="h5 fw-bolder">Адрес</h2>
+                            <p class="mb-0">119048, город Москва, улица Усачёва, дом 50</p>
+                        </div>
+                    </div>
+                    <div class="row gx-5 row-cols-1 row-cols-md-3">
+                        <div class="col mb-md-0 h-100">
+                            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i></div>
+                            <h2 class="h5 fw-bolder">Веб-сайт</h2>
+                            <a href="http://lyc1535.mskobr.ru" class="mb-0 text-decoration-none">lyc1535.mskobr.ru</a>
+                        </div>
+                        <div class="col h-100">
+                            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i></div>
+                            <h2 class="h5 fw-bolder">Email</h2>
+                            <a href="mailto:1535@edu.mos.ru" class="mb-0 text-decoration-none">1535@edu.mos.ru</a>
+                        </div>
+                        <div class="col h-100">
+                            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i></div>
+                            <h2 class="h5 fw-bolder">Телефон</h2>
+                            <a href="tel:+74992455742" class="mb-0 text-decoration-none">(499) 245-57-42</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="olympiads-info" class="py-5 text-center">
+        <h2>Участие в олимпиадах</h2>
+        <div class="container px-5 my-5">
+            <div class="row gx-5">
+                <div class="col-lg-3 mx-auto info-menu pb-5">
+                    <h3 class="mt-3 mb-5 fs-4">Сортировка</h3>
+
+                    <label for="menu-type">Тип олимпиады</label>
+                    <select class="form-select" id="menu-type">
+                        <option value="none" selected>Выберите тип олимпиады...</option>
+                        <option value="rus">Всероссийская олимпиада</option>
+                        <option value="mos">Московская олимпиада</option>
+                    </select>
+
+                    <label for="menu-subject">Предмет</label>
+                    <select class="form-select" id="menu-subject">
+                        <option value="none" selected>Выберите предмет...</option>
+                        <option value="math">Математика</option>
+                        <option value="physics">Физика</option>
+                    </select>
+
+                    <label for="menu-class">Класс</label>
+                    <select class="form-select" id="menu-class">
+                        <option value="none" selected>Выберите класс...</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                    </select>
+
+                    <label for="menu-year">Год участия</label>
+                    <select class="form-select" id="menu-year">
+                        <option value="none" selected>Выберите год участия...</option>
+                        <option value="2016/2017">2016/2017</option>
+                        <option value="2017/2018">2017/2018</option>
+                    </select>
+
+                </div>
+
+                <div class="col-lg-9 mx-auto info-results">
+                    <h3 class="my-3 fs-4">Результаты</h3>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center">Московская олимпиада</h5>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item"><img src="source/trophy.png" alt="Победитель"> Победитель</li>
+                                        <li class="list-group-item"><img src="source/bookmark.png" alt="Предмет"> География</li>
+                                        <li class="list-group-item"><img src="source/graduated.png" alt="Класс"> 6 класс</li>
+                                        <li class="list-group-item"><img src="source/calendar.png" alt="Год"> 2016/2017</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center">Всероссийская олимпиада</h5>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item"><img src="source/podium.png" alt="Победитель"> Призер</li>
+                                        <li class="list-group-item"><img src="source/bookmark.png" alt="Предмет"> МХК</li>
+                                        <li class="list-group-item"><img src="source/graduated.png" alt="Класс"> 11 класс</li>
+                                        <li class="list-group-item"><img src="source/calendar.png" alt="Год"> 2017/2018</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center">Московская олимпиада</h5>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item"><img src="source/trophy.png" alt="Победитель"> Победитель</li>
+                                        <li class="list-group-item"><img src="source/bookmark.png" alt="Предмет"> Математика</li>
+                                        <li class="list-group-item"><img src="source/graduated.png" alt="Класс"> 9 класс</li>
+                                        <li class="list-group-item"><img src="source/calendar.png" alt="Год"> 2016/2017</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                        
+                        </div>
+                    </div>
+
+                </div>
+            
+            </div>
+        </div>
+    </section>
+   
+    <!-- Футер
+    <div>Icons made by <a href="https://www.flaticon.com/authors/eucalyp" title="Eucalyp">Eucalyp</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> -->
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="scripts/countries_search_example.js"></script>
+<script>
+    autocomplete(document.getElementById("search"), countries);
+</script>
+
+</html>
