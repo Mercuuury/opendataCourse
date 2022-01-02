@@ -22,51 +22,6 @@ if(isset($_GET['id'])) {
     $phone = preg_replace('/(PublicPhone:)/iu', '', $result['PublicPhone']);
     //-----------------------------------------------------------------
 
-    //-------------------------OLYMPIADS INFO--------------------------
-    $query = "SELECT * FROM results WHERE ShortName = '$title'";
-    $result = mysqli_query($link, $query);
-    $olympiads = "";
-    $i = 0;
-    $olympiadsArr = array();
-    while ($res = mysqli_fetch_array($result)) {
-        if ($i % 2 == 0) {
-            $olympiads .= '<div class="row">';
-        }
-        $olymp = array("OlympiadType" => $res['OlympiadType'],
-        "Subject" => $res['Subject'],
-        "Status" => $res['Status'],
-        "Class" => $res['Class'],
-        "Year" => $res['Year']);
-        array_push($olympiadsArr, $olymp);
-        $olympiads .= '
-        <div class="col-sm-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title text-center">'.$res['OlympiadType'].'</h5>
-                    <ul class="list-group list-group-flush">';
-        if ($res['Status'] == 'призёр') {
-            $olympiads .= '<li class="list-group-item"><img src="source/podium.png" alt="Победитель"> Призер</li>';
-        } else {
-            $olympiads .= '<li class="list-group-item"><img src="source/trophy.png" alt="Победитель"> Победитель</li>';
-        }
-        $olympiads .= ' 
-                        <li class="list-group-item"><img src="source/bookmark.png" alt="Предмет"> '.$res['Subject'].'</li>
-                        <li class="list-group-item"><img src="source/graduated.png" alt="Класс"> '.$res['Class'].' класс</li>
-                        <li class="list-group-item"><img src="source/calendar.png" alt="Год"> '.$res['Year'].'</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        ';
-
-        if ($i % 2 != 0) {
-            $olympiads .= '</div>';
-        }
-        $i++;
-    }
-    $json = json_encode($olympiadsArr);
-    //-----------------------------------------------------------------
-
     //------------------------------SORT-------------------------------
     // Olympiad type
     $query = "SELECT DISTINCT OlympiadType FROM results;";
@@ -108,6 +63,3 @@ if(isset($_GET['id'])) {
 
 require "template.php";
 ?>
-<script>
-    console.log(JSON.parse('<?php echo $json; ?>'));
-</script>

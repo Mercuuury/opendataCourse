@@ -114,7 +114,6 @@
 
                 <div class="col-lg-9 mx-auto info-results">
                     <h3 class="my-3 fs-4">Результаты</h3>
-                    <?=$olympiads;?>
                 </div>
             
             </div>
@@ -128,5 +127,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-<script type="text/javascript" src="scripts/script.js"></script>
+<script type="text/javascript" src="scripts/main.js"></script>
+<script type="text/javascript" src="scripts/olympiads.js"></script>
 </html>
