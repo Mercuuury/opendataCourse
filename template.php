@@ -61,7 +61,7 @@
                         <div class="col mb-md-0 h-100">
                             <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i></div>
                             <h2 class="h5 fw-bolder">Веб-сайт</h2>
-                            <a href="<?=$website;?>" class="mb-0 text-decoration-none"><?=$website;?></a>
+                            <a href="http://<?=$website;?>" class="mb-0 text-decoration-none"><?=$website;?></a>
                         </div>
                         <div class="col h-100">
                             <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i></div>
@@ -87,85 +87,34 @@
                     <h3 class="mt-3 mb-5 fs-4">Сортировка</h3>
 
                     <label for="menu-type">Тип олимпиады</label>
-                    <select class="form-select" id="menu-type">
+                    <select class="form-select" id="menu-type" onchange="console.log(this.options[this.selectedIndex].value);console.log(this.id)">
                         <option value="none" selected>Выберите тип олимпиады...</option>
-                        <option value="rus">Всероссийская олимпиада</option>
-                        <option value="mos">Московская олимпиада</option>
+                        <?=$olympiad_types;?>
                     </select>
 
                     <label for="menu-subject">Предмет</label>
                     <select class="form-select" id="menu-subject">
                         <option value="none" selected>Выберите предмет...</option>
-                        <option value="math">Математика</option>
-                        <option value="physics">Физика</option>
+                        <?=$subjects;?>
                     </select>
 
                     <label for="menu-class">Класс</label>
                     <select class="form-select" id="menu-class">
                         <option value="none" selected>Выберите класс...</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
+                        <?=$classes;?>
                     </select>
 
                     <label for="menu-year">Год участия</label>
                     <select class="form-select" id="menu-year">
                         <option value="none" selected>Выберите год участия...</option>
-                        <option value="2016/2017">2016/2017</option>
-                        <option value="2017/2018">2017/2018</option>
+                        <?=$years;?>
                     </select>
 
                 </div>
 
                 <div class="col-lg-9 mx-auto info-results">
                     <h3 class="my-3 fs-4">Результаты</h3>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title text-center">Московская олимпиада</h5>
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item"><img src="source/trophy.png" alt="Победитель"> Победитель</li>
-                                        <li class="list-group-item"><img src="source/bookmark.png" alt="Предмет"> География</li>
-                                        <li class="list-group-item"><img src="source/graduated.png" alt="Класс"> 6 класс</li>
-                                        <li class="list-group-item"><img src="source/calendar.png" alt="Год"> 2016/2017</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title text-center">Всероссийская олимпиада</h5>
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item"><img src="source/podium.png" alt="Победитель"> Призер</li>
-                                        <li class="list-group-item"><img src="source/bookmark.png" alt="Предмет"> МХК</li>
-                                        <li class="list-group-item"><img src="source/graduated.png" alt="Класс"> 11 класс</li>
-                                        <li class="list-group-item"><img src="source/calendar.png" alt="Год"> 2017/2018</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title text-center">Московская олимпиада</h5>
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item"><img src="source/trophy.png" alt="Победитель"> Победитель</li>
-                                        <li class="list-group-item"><img src="source/bookmark.png" alt="Предмет"> Математика</li>
-                                        <li class="list-group-item"><img src="source/graduated.png" alt="Класс"> 9 класс</li>
-                                        <li class="list-group-item"><img src="source/calendar.png" alt="Год"> 2016/2017</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                        
-                        </div>
-                    </div>
-
+                    <?=$olympiads;?>
                 </div>
             
             </div>
