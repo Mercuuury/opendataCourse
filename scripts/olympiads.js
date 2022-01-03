@@ -11,8 +11,7 @@ function getOlympiads() {
             type: "POST", 
             url: "olympiads.php",
             data: {
-                id: idParam,
-                search: name,
+                id: idParam
             },
             success: function (response) {
                 if (response == 'no id') {
@@ -66,11 +65,30 @@ function fillOlympiads(arr) {
             olympiadsList += '</div>';
         }
     }
-    $('.info-results-olympiads').append(olympiadsList);
+    if (arr.length > 4) {
+        olympiadsList += '\
+        <div class="d-flex justify-content-center mb-3">\
+            <a class="showMore">\
+                <img id="down-arrow" width="50px" src="source/arrow.png" alt="arrow">\
+            </a>\
+        </div>\
+        ';
+        $('.info-results-olympiads').append(olympiadsList);
+        hideAfter4();
+        document.querySelector('.showMore').onclick = function() {
+            showAll();
+        };
+    } else {
+        $('.info-results-olympiads').append(olympiadsList);
+    }
 }
 
 function sortOlympiads(type, status, subject, grade, year) {
     let sortedArr = new Array();
+
+    if (!type && !status && !subject && !grade && !year) {
+        sortedArr = olympiads;
+    }
 
     if (type) {
         olympiads.forEach(olympiad => {
@@ -137,3 +155,20 @@ document.querySelectorAll('.menu').forEach(menu => menu.addEventListener('change
     sortValues = getSelectedValues();
     sortOlympiads(sortValues[0], sortValues[1], sortValues[2], sortValues[3], sortValues[4]);
 }));
+
+function hideAfter4() {
+    let i = 0;
+    (document.querySelectorAll('.card')).forEach(card => {
+        if (i > 3) {
+            card.classList.add('d-none');
+        }
+        i++;
+    });
+}
+
+function showAll() {
+    (document.querySelectorAll('.card.d-none')).forEach(card => {
+        card.classList.remove('d-none');
+    });
+    document.querySelector('.showMore').parentNode.removeChild(document.querySelector('.showMore'));
+}
