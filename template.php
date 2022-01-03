@@ -87,26 +87,33 @@
                     <h3 class="mt-3 mb-5 fs-4">Сортировка</h3>
 
                     <label for="menu-type">Тип олимпиады</label>
-                    <select class="form-select" id="menu-type" onchange="console.log(this.options[this.selectedIndex].value);console.log(this.id)">
-                        <option value="none" selected>Выберите тип олимпиады...</option>
+                    <select class="form-select menu" id="menu-type">
+                        <option value="" selected>Выберите тип олимпиады...</option>
                         <?=$olympiad_types;?>
                     </select>
 
+                    <label for="menu-type">Призовое место</label>
+                    <select class="form-select menu" id="menu-status">
+                        <option value="" selected>Выберите призовое место...</option>
+                        <option value="победитель">Победитель</option>
+                        <option value="призёр">Призер</option>
+                    </select>
+
                     <label for="menu-subject">Предмет</label>
-                    <select class="form-select" id="menu-subject">
-                        <option value="none" selected>Выберите предмет...</option>
+                    <select class="form-select menu" id="menu-subject">
+                        <option value="" selected>Выберите предмет...</option>
                         <?=$subjects;?>
                     </select>
 
                     <label for="menu-class">Класс</label>
-                    <select class="form-select" id="menu-class">
-                        <option value="none" selected>Выберите класс...</option>
+                    <select class="form-select menu" id="menu-class">
+                        <option value="" selected>Выберите класс...</option>
                         <?=$classes;?>
                     </select>
 
                     <label for="menu-year">Год участия</label>
-                    <select class="form-select" id="menu-year">
-                        <option value="none" selected>Выберите год участия...</option>
+                    <select class="form-select menu" id="menu-year">
+                        <option value="" selected>Выберите год участия...</option>
                         <?=$years;?>
                     </select>
 
@@ -114,6 +121,9 @@
 
                 <div class="col-lg-9 mx-auto info-results">
                     <h3 class="my-3 fs-4">Результаты</h3>
+                    <div class="info-results-olympiads">
+
+                    </div>
                 </div>
             
             </div>
