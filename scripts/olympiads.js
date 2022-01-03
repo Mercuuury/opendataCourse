@@ -22,6 +22,8 @@ function getOlympiads() {
                     });
                     olympiads = olympiads;
                     fillOlympiads(olympiads);
+                    visualizePieChart(olympiads);
+                    visualizeAreaChart(olympiads);
                 }
             },
         });
@@ -171,4 +173,86 @@ function showAll() {
         card.classList.remove('d-none');
     });
     document.querySelector('.showMore').parentNode.removeChild(document.querySelector('.showMore'));
+}
+
+function visualizePieChart(arr) {
+    let winners = 0;
+    let prizeWinners = 0;
+    arr.forEach(olympiad => {
+        if (olympiad['Status'] == 'призёр')
+            prizeWinners++;
+        else
+            winners++;
+    });
+
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['Призовое место', 'Количество занятых мест'],
+            ['Победитель', winners],
+            ['Призер', prizeWinners]
+        ]);
+
+        var options = {
+            title: 'Статистика занятых призовых мест',
+            width: 400,
+            height: 300,
+            pieHole: 0.4,
+            legend: 'none',
+            pieSliceText: 'label',
+            pieSliceTextStyle: {color: 'black', fontSize: 14},
+            pieSliceBorderColor: 'transparent',
+            backgroundColor: '#D9EFE2',
+            fontName: 'Noto Sans Light',
+            colors: ['#FECE00', '#DAD8DB'],
+        };
+
+      var chart = new google.visualization.PieChart(document.getElementById('piechart_div'));
+      chart.draw(data, options);
+    }
+}
+
+function visualizeAreaChart(arr) {
+    function unique(arr) {
+        let result = [];
+        for (let str of arr) 
+            if (!result.includes(str['Year'])) 
+                result.push(str['Year']);
+        return result;
+    }
+
+    dataArr = [['Год', 'Победитель', 'Призер']];
+    unique(arr).forEach(year => {
+        let winners = 0;
+        let prizeWinners = 0;
+        arr.forEach(olympiad => {
+            if (olympiad['Year'] == year && olympiad['Status'] == 'призёр')
+                prizeWinners++;
+            else if (olympiad['Year'] == year && olympiad['Status'] == 'победитель')
+                winners++;
+        });
+        dataArr.push([year, winners, prizeWinners]);
+    });
+
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable(dataArr);
+
+        var options = {
+            title: 'Этому надо дать название',
+            hAxis: {title: 'Год',  titleTextStyle: {color: '#333'}},
+            vAxis: {title: 'Количество призовых мест',  titleTextStyle: {color: '#333'}, minValue: 0},
+            width: 800,
+            height: 400,
+            backgroundColor: '#D9EFE2',
+            fontName: 'Noto Sans Light',
+            colors: ['#FECE00', '#DAD8DB'],
+        };
+
+      var chart = new google.visualization.AreaChart(document.getElementById('areachart_div'));
+      chart.draw(data, options);
+    }
 }

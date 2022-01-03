@@ -79,8 +79,13 @@
         </div>
     </section>
 
-    <section id="olympiads-info" class="py-5 text-center">
+    <section id="olympiads-info" class="py-5 text-center h-100">
         <h2>Участие в олимпиадах</h2>
+        
+        <div class="container mx-auto d-flex align-items-center justify-content-center">
+            <div id="piechart_div"></div>
+            <div id="areachart_div"></div>
+        </div>
         <div class="container px-5 my-5">
             <div class="row gx-5">
                 <div class="col-lg-3 mx-auto info-menu pb-5">
@@ -130,13 +135,15 @@
         </div>
     </section>
    
-    <!-- Футер
-    <div>Icons made by <a href="https://www.flaticon.com/authors/eucalyp" title="Eucalyp">Eucalyp</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> -->
+    <footer class="container-fluid d-flex align-items-center justify-content-center p-5">
+        <div>Icons made by <a href="https://www.flaticon.com/authors/eucalyp" title="Eucalyp">Eucalyp</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+    </footer>
     <?php endif; ?>
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript" src="scripts/main.js"></script>
 <script type="text/javascript" src="scripts/olympiads.js"></script>
 </html>
