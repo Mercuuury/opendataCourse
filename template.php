@@ -98,7 +98,7 @@
         <div class="container px-5 my-5">
             <div class="row gx-5">
                 <div class="col-lg-3 mx-auto info-menu pb-5">
-                    <h3 class="mt-3 mb-5 fs-4">Сортировка</h3>
+                    <h3 class="mt-3 mb-5 fs-4">Фильтры</h3>
 
                     <label for="menu-type">Тип олимпиады</label>
                     <select class="form-select menu" id="menu-type">

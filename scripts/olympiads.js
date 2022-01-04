@@ -2,9 +2,16 @@ let idParam = (new URL(document.location)).searchParams.get("id");
 let olympiads = new Array();
 window.onload = function() {
     getOlympiads();
-
 }
-
+/*
+|--------------------------------------------------------------------------
+| Получение результатов олимпиад из базы данных
+|--------------------------------------------------------------------------
+| Выполняется отправка POST-запроса на скрипт olympiads.php
+| Скрипт возвращает результаты в формате JSON, которые преобразуются в 
+| массив olympiads. Происходит вызов функций заполнения карточек результатов
+| и отрисовки графиков Google Charts.
+*/
 function getOlympiads() {
     if (idParam && idParam != 'undefined') {
         $.ajax({
@@ -29,7 +36,11 @@ function getOlympiads() {
         });
     }
 }
-
+/*
+|--------------------------------------------------------------------------
+| Создание HTML карточек результатов и кнопок Показать больше/меньше
+|--------------------------------------------------------------------------
+*/
 function fillOlympiads(arr) {
     let olympiadsList = '';
     $('.info-results-olympiads').html("");
@@ -71,22 +82,83 @@ function fillOlympiads(arr) {
         }
     }
 
-    if (arr.length > 4) {
-        olympiadsList += '\
+    $('.info-results-olympiads').append(olympiadsList);
+    $('.info-results-olympiads').append('\
         <div class="d-flex justify-content-center mb-3">\
             <a class="showMore">\
-                <img id="down-arrow" width="50px" src="source/arrow.png" alt="arrow">\
+                <img width="50px" src="source/arrow.png" alt="arrow">\
             </a>\
-        </div>\
-        ';
-        $('.info-results-olympiads').append(olympiadsList);
-        hideAfter4();
-        document.querySelector('.showMore').onclick = function() {
-            showAll();
-        };
-    } else {
-        $('.info-results-olympiads').append(olympiadsList);
+        </div>');
+    $('.info-results-olympiads').append('\
+        <div class="d-flex justify-content-center mb-3">\
+            <a class="showLess">\
+                <img width="50px" src="source/arrow_up.png" alt="arrow">\
+            </a>\
+        </div>');
+    $('.showLess').hide();
+    $('.showMore').hide();
+    document.querySelector('.showLess').onclick = function() {
+        hideAll();
+    };
+    document.querySelector('.showMore').onclick = function() {
+        showAll();
+    };
+
+    if (arr.length > 4) {
+        hideAll();
     }
+}
+/*
+|--------------------------------------------------------------------------
+| Функции для пагинации списка результатов
+|--------------------------------------------------------------------------
+*/
+function hideAll() {
+    $('.showLess').hide();
+    let i = 0;
+    $(".card").each(function() {
+        if (i > 3) {
+            $(this).fadeOut();
+        }
+        i++;
+    });
+    $('.showMore').show();
+}
+
+function showAll() {
+    $('.showMore').hide();
+    $(".card").each(function(index) {
+        let card = $(this);
+        setTimeout(function () {
+            card.fadeIn("slow");
+        }, index * 200);
+    });
+    setTimeout(function () {
+        $('.showLess').show();
+    }, $(".card").length * 200);
+}
+/*
+|--------------------------------------------------------------------------
+| Фильтрация результатов
+|--------------------------------------------------------------------------
+| Происходит при каждом изменении фильтра на странице.
+| В массив sortValues собираются значения всех фильтров и передаются 
+| в функцию sortOlympiads.
+*/
+document.querySelectorAll('.menu').forEach(menu => menu.addEventListener('change', function(){ 
+    sortValues = getSelectedValues();
+    sortOlympiads(sortValues[0], sortValues[1], sortValues[2], sortValues[3], sortValues[4]);
+}));
+
+function getSelectedValues() {
+    sortValues = [
+        document.getElementById('menu-type').value,
+        document.getElementById('menu-status').value,
+        document.getElementById('menu-subject').value,
+        document.getElementById('menu-class').value,
+        document.getElementById('menu-year').value
+    ];
+    return sortValues;
 }
 
 function sortOlympiads(type, status, subject, grade, year) {
@@ -145,40 +217,15 @@ function sortOlympiads(type, status, subject, grade, year) {
 
     fillOlympiads(sortedArr);
 }
-
-function getSelectedValues() {
-    sortValues = [
-        document.getElementById('menu-type').value,
-        document.getElementById('menu-status').value,
-        document.getElementById('menu-subject').value,
-        document.getElementById('menu-class').value,
-        document.getElementById('menu-year').value
-    ];
-    return sortValues;
-}
-
-document.querySelectorAll('.menu').forEach(menu => menu.addEventListener('change', function(){ 
-    sortValues = getSelectedValues();
-    sortOlympiads(sortValues[0], sortValues[1], sortValues[2], sortValues[3], sortValues[4]);
-}));
-
-function hideAfter4() {
-    let i = 0;
-    (document.querySelectorAll('.card')).forEach(card => {
-        if (i > 3) {
-            card.classList.add('d-none');
-        }
-        i++;
-    });
-}
-
-function showAll() {
-    (document.querySelectorAll('.card.d-none')).forEach(card => {
-        card.classList.remove('d-none');
-    });
-    document.querySelector('.showMore').parentNode.removeChild(document.querySelector('.showMore'));
-}
-
+/*
+|--------------------------------------------------------------------------
+| Визуализация результатов. Google Charts
+|--------------------------------------------------------------------------
+| Для визуализации данных используется Google Charts API.
+| https://developers.google.com/chart
+| Pie Chart отображает общее количество занятых призовых мест.
+| Area Chart отображает количество занятых призовых мест по годам.
+*/
 function visualizePieChart(arr) {
     if (arr.length == 0) {
         return;
@@ -196,7 +243,7 @@ function visualizePieChart(arr) {
     google.charts.setOnLoadCallback(drawChart);
     function drawChart() {
         var data = google.visualization.arrayToDataTable([
-            ['Призовое место', 'Количество занятых мест'],
+            ['Призовое место', 'Количество занятых призовых мест'],
             ['Победитель', winners],
             ['Призер', prizeWinners]
         ]);
