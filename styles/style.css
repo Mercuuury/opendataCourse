@@ -120,3 +120,9 @@ section {
 footer {
     background-color: #98D3B0;
 }
+.footer-icon {
+    transition: 0.5s;
+}
+.footer-icon:hover {
+    transform: scale(1.2);
+}

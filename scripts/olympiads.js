@@ -35,7 +35,7 @@ function fillOlympiads(arr) {
     $('.info-results-olympiads').html("");
 
     if (arr.length == 0) {
-        olympiadsList += '<p>В базе данных не нашлось результатов для данного учреждения.</p>';
+        olympiadsList += '<p class="text-center mt-5">В базе данных не нашлось результатов для данного учреждения.</p>';
     } else {
         for (let i = 0; i < arr.length; i++) {
             if (i % 2 == 0) {

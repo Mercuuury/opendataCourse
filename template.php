@@ -145,7 +145,13 @@
     </section>
    
     <footer class="container-fluid d-flex align-items-center justify-content-center p-5">
-        <div>Icons made by <a href="https://www.flaticon.com/authors/eucalyp" title="Eucalyp">Eucalyp</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+        <a href="https://data.mos.ru/" style="margin-right: 15px;">
+            <img class="footer-icon" height="48" width="48" src="source/logo.png">
+        </a>
+        <a href="https://www.flaticon.com/">
+            <img class="footer-icon" height="48" width="48" src="source/flaticon.png">
+        </a>
+        
     </footer>
     <?php endif; ?>
 </body>
