@@ -6,7 +6,7 @@ window.onload = function() {
 }
 
 function getOlympiads() {
-    if (idParam) {
+    if (idParam && idParam != 'undefined') {
         $.ajax({
             type: "POST", 
             url: "olympiads.php",
@@ -28,45 +28,49 @@ function getOlympiads() {
             },
         });
     }
-    
 }
 
 function fillOlympiads(arr) {
     let olympiadsList = '';
     $('.info-results-olympiads').html("");
 
-    for (let i = 0; i < arr.length; i++) {
-        if (i % 2 == 0) {
-            olympiadsList += '<div class="row">';
-        }
-
-        olympiadsList += '\
-        <div class="col-sm-6">\
-            <div class="card">\
-                <div class="card-body">\
-                    <h5 class="card-title text-center">'+arr[i]['OlympiadType']+'</h5>\
-                    <ul class="list-group list-group-flush">';
-
-        if (arr[i]['Status'] == 'призёр') {
-            olympiadsList += '<li class="list-group-item"><img src="source/podium.png" alt="Победитель"> Призер</li>';
-        } else {
-            olympiadsList += '<li class="list-group-item"><img src="source/trophy.png" alt="Победитель"> Победитель</li>';
-        }
-
-        olympiadsList += '\
-                        <li class="list-group-item"><img src="source/bookmark.png" alt="Предмет"> '+arr[i]['Subject']+'</li>\
-                        <li class="list-group-item"><img src="source/graduated.png" alt="Класс"> '+arr[i]['Class']+' класс</li>\
-                        <li class="list-group-item"><img src="source/calendar.png" alt="Год"> '+arr[i]['Year']+'</li>\
-                    </ul>\
+    if (arr.length == 0) {
+        olympiadsList += '<p>В базе данных не нашлось результатов для данного учреждения.</p>';
+    } else {
+        for (let i = 0; i < arr.length; i++) {
+            if (i % 2 == 0) {
+                olympiadsList += '<div class="row">';
+            }
+    
+            olympiadsList += '\
+            <div class="col-sm-6">\
+                <div class="card">\
+                    <div class="card-body">\
+                        <h5 class="card-title text-center">'+arr[i]['OlympiadType']+'</h5>\
+                        <ul class="list-group list-group-flush">';
+    
+            if (arr[i]['Status'] == 'призёр') {
+                olympiadsList += '<li class="list-group-item"><img src="source/podium.png" alt="Победитель"> Призер</li>';
+            } else {
+                olympiadsList += '<li class="list-group-item"><img src="source/trophy.png" alt="Победитель"> Победитель</li>';
+            }
+    
+            olympiadsList += '\
+                            <li class="list-group-item"><img src="source/bookmark.png" alt="Предмет"> '+arr[i]['Subject']+'</li>\
+                            <li class="list-group-item"><img src="source/graduated.png" alt="Класс"> '+arr[i]['Class']+' класс</li>\
+                            <li class="list-group-item"><img src="source/calendar.png" alt="Год"> '+arr[i]['Year']+'</li>\
+                        </ul>\
+                    </div>\
                 </div>\
             </div>\
-        </div>\
-        ';
-    
-        if (i % 2 != 0) {
-            olympiadsList += '</div>';
+            ';
+        
+            if (i % 2 != 0) {
+                olympiadsList += '</div>';
+            }
         }
     }
+
     if (arr.length > 4) {
         olympiadsList += '\
         <div class="d-flex justify-content-center mb-3">\
@@ -176,6 +180,9 @@ function showAll() {
 }
 
 function visualizePieChart(arr) {
+    if (arr.length == 0) {
+        return;
+    }
     let winners = 0;
     let prizeWinners = 0;
     arr.forEach(olympiad => {
@@ -195,13 +202,11 @@ function visualizePieChart(arr) {
         ]);
 
         var options = {
-            title: 'Статистика занятых призовых мест',
-            width: 400,
-            height: 300,
+            title: 'Количество занятых призовых мест',
+            legend: {position: 'top'},
             pieHole: 0.4,
-            legend: 'none',
-            pieSliceText: 'label',
-            pieSliceTextStyle: {color: 'black', fontSize: 14},
+            height: 400,
+            pieSliceTextStyle: {color: 'black'},
             pieSliceBorderColor: 'transparent',
             backgroundColor: '#D9EFE2',
             fontName: 'Noto Sans Light',
@@ -214,6 +219,9 @@ function visualizePieChart(arr) {
 }
 
 function visualizeAreaChart(arr) {
+    if (arr.length == 0) {
+        return;
+    }
     function unique(arr) {
         let result = [];
         for (let str of arr) 
@@ -242,10 +250,10 @@ function visualizeAreaChart(arr) {
         var data = google.visualization.arrayToDataTable(dataArr);
 
         var options = {
-            title: 'Этому надо дать название',
+            title: 'Занятые призовые места по годам участия',
             hAxis: {title: 'Год',  titleTextStyle: {color: '#333'}},
             vAxis: {title: 'Количество призовых мест',  titleTextStyle: {color: '#333'}, minValue: 0},
-            width: 800,
+            legend: {position: 'top'},
             height: 400,
             backgroundColor: '#D9EFE2',
             fontName: 'Noto Sans Light',
@@ -256,3 +264,8 @@ function visualizeAreaChart(arr) {
       chart.draw(data, options);
     }
 }
+
+$(window).resize(function(){
+    visualizePieChart(olympiads);
+    visualizeAreaChart(olympiads);
+});

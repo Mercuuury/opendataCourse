@@ -8,7 +8,7 @@ $website = "";
 $email = "";
 $phone = "";
 
-if(isset($_GET['id'])) {
+if(isset($_GET['id'])  && $_GET['id'] != 'undefined') {
     //----------------------------MAIN INFO----------------------------
     $id = $_GET['id'];
     $query = "SELECT * FROM institutions WHERE global_id = '$id'";

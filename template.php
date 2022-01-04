@@ -13,6 +13,12 @@
     <section id="header" >
         <div class="container-fluid px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
             <div class="col-md-6 col-lg-5 col-11 mx-auto my-auto">
+                <?php if(isset($_GET['id']) && $_GET['id'] == 'undefined'): ?>
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <strong>Произошла ошибка.</strong> Попробуйте выбрать учебное учреждение еще раз.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                <?php endif; ?>
                 <div class="input-group form-container">
                     <h1 class="search-title mb-5 fs-3">Найдите информацию о московских учебных учреждения и сведения об участии в олимпиадах</h1>
                     <input type="text" id="search" name="search" class="form-control search-input" autofocus="autofocus" autocomplete="off" placeholder="Начните вводить название учебного учреждения...">
@@ -22,7 +28,7 @@
                     <div id="autocomplete-list" class="autocomplete-items"></div>
                 </div>
                 <div class="mt-5 d-flex justify-content-center">
-                    <?php if(isset($_GET['id'])): ?>
+                    <?php if(isset($_GET['id']) && $_GET['id'] != 'undefined'): ?>
                     <a onClick="document.getElementById('main-info').scrollIntoView();">
                         <img id="down-arrow" width="50px" src="source/arrow.png" alt="arrow">
                     </a>
@@ -34,7 +40,7 @@
         </div>
     </section>
     
-    <?php if(isset($_GET['id'])): ?>
+    <?php if(isset($_GET['id']) && $_GET['id'] != 'undefined'): ?>
     <section id="main-info" class="py-5 text-center">
         <h2><?=$title;?></h2>
         <div class="container px-5 my-5">
@@ -83,8 +89,11 @@
         <h2>Участие в олимпиадах</h2>
         
         <div class="container mx-auto d-flex align-items-center justify-content-center">
-            <div id="piechart_div"></div>
-            <div id="areachart_div"></div>
+            <div class="row w-100">
+                <div class="col-lg-5" id="piechart_div"></div>
+                <div class="col-lg-7" id="areachart_div"></div>
+            </div>
+            
         </div>
         <div class="container px-5 my-5">
             <div class="row gx-5">
