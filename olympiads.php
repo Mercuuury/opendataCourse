@@ -1,8 +1,7 @@
 <?php
 require "connect.php";
 
-if(isset($_POST['id'])) {
-    
+if(isset($_POST['id']) && $_POST['id'] != 'undefined' && $_POST['id'] != '') {
     $id = $_POST['id'];
     $query = "SELECT * FROM institutions WHERE global_id = '$id'";
     $result = mysqli_fetch_array(mysqli_query($link, $query));
@@ -16,7 +15,7 @@ if(isset($_POST['id'])) {
         "Subject" => $res['Subject'],
         "Status" => $res['Status'],
         "Class" => $res['Class'],
-        "Year" => $res['Year']
+        "Year" => $res['Year'],
         );
         array_push($olympiadsArr, $olymp);
     }

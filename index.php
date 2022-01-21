@@ -1,6 +1,6 @@
 <?php
 require "connect.php";
-$title = "Курсовой проект";
+$title = "Результаты олимпиад";
 $fullName = "";
 $type = "";
 $address = "";
@@ -8,7 +8,7 @@ $website = "";
 $email = "";
 $phone = "";
 
-if(isset($_GET['id'])  && $_GET['id'] != 'undefined') {
+if(isset($_GET['id']) && $_GET['id'] != 'undefined' && $_GET['id'] != '') {
     //----------------------------MAIN INFO----------------------------
     $id = $_GET['id'];
     $query = "SELECT * FROM institutions WHERE global_id = '$id'";

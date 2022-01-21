@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,15 +10,16 @@
 </head>
 
 <body>
-    <section id="header" >
+    <section id="header">
         <div class="container-fluid px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
             <div class="col-md-6 col-lg-5 col-11 mx-auto my-auto">
-                <?php if(isset($_GET['id']) && $_GET['id'] == 'undefined'): ?>
+                <?php if(isset($_GET['id']) && ($_GET['id'] == 'undefined' || $_GET['id'] == '')): ?>
                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
                         <strong>Произошла ошибка.</strong> Попробуйте выбрать учебное учреждение еще раз.
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 <?php endif; ?>
+                <a style="cursor:default" href="/"><img class="d-block logo" width="150px" src="img/logo.png" alt="Логотип"></a>
                 <div class="input-group form-container">
                     <h1 class="search-title mb-5 fs-3">Найдите информацию о московских учебных учреждения и сведения об участии в олимпиадах</h1>
                     <input type="text" id="search" name="search" class="form-control search-input" autofocus="autofocus" autocomplete="off" placeholder="Начните вводить название учебного учреждения...">
@@ -28,19 +29,18 @@
                     <div id="autocomplete-list" class="autocomplete-items"></div>
                 </div>
                 <div class="mt-5 d-flex justify-content-center">
-                    <?php if(isset($_GET['id']) && $_GET['id'] != 'undefined'): ?>
+                    <?php if(isset($_GET['id']) && $_GET['id'] != 'undefined' && $_GET['id'] != ''): ?>
                     <a onClick="document.getElementById('main-info').scrollIntoView();">
-                        <img id="down-arrow" width="50px" src="source/arrow.png" alt="arrow">
+                        <img class="arrow animated" width="50px" src="img/arrow.png" alt="arrow">
                     </a>
                     <?php endif; ?>
                 </div>
                 <p class="fs-1">&nbsp;</p>
-            </div>
-                             
+            </div>           
         </div>
     </section>
     
-    <?php if(isset($_GET['id']) && $_GET['id'] != 'undefined'): ?>
+    <?php if(isset($_GET['id']) && $_GET['id'] != 'undefined' && $_GET['id'] != ''): ?>
     <section id="main-info" class="py-5 text-center">
         <h2><?=$title;?></h2>
         <div class="container px-5 my-5">
@@ -92,9 +92,9 @@
             <div class="row w-100">
                 <div class="col-lg-5" id="piechart_div"></div>
                 <div class="col-lg-7" id="areachart_div"></div>
-            </div>
-            
+            </div> 
         </div>
+
         <div class="container px-5 my-5">
             <div class="row gx-5">
                 <div class="col-lg-3 mx-auto info-menu pb-5">
@@ -134,7 +134,7 @@
                 </div>
 
                 <div class="col-lg-9 mx-auto info-results">
-                    <h3 class="my-3 fs-4">Результаты</h3>
+                    <h3 class="my-3 fs-4 mb-5">Результаты</h3>
                     <div class="info-results-olympiads">
 
                     </div>
@@ -146,12 +146,11 @@
    
     <footer class="container-fluid d-flex align-items-center justify-content-center p-5">
         <a href="https://data.mos.ru/" style="margin-right: 15px;">
-            <img class="footer-icon" height="48" width="48" src="source/logo.png">
+            <img class="footer-icon" height="48" width="48" src="img/mos-logo.png">
         </a>
         <a href="https://www.flaticon.com/">
-            <img class="footer-icon" height="48" width="48" src="source/flaticon.png">
+            <img class="footer-icon" height="48" width="48" src="img/flaticon.png">
         </a>
-        
     </footer>
     <?php endif; ?>
 </body>
@@ -159,6 +158,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript" src="scripts/main.js"></script>
+<script type="text/javascript" src="scripts/search.js"></script>
 <script type="text/javascript" src="scripts/olympiads.js"></script>
 </html>

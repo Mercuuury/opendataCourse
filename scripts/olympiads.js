@@ -24,10 +24,7 @@ function getOlympiads() {
                 if (response == 'no id') {
                     console.log("no id");
                 } else {
-                    (JSON.parse(response)).forEach(element => {
-                        olympiads.push(element);
-                    });
-                    olympiads = olympiads;
+                    olympiads = JSON.parse(response);
                     fillOlympiads(olympiads);
                     visualizePieChart(olympiads);
                     visualizeAreaChart(olympiads);
@@ -61,15 +58,15 @@ function fillOlympiads(arr) {
                         <ul class="list-group list-group-flush">';
     
             if (arr[i]['Status'] == 'призёр') {
-                olympiadsList += '<li class="list-group-item"><img src="source/podium.png" alt="Победитель"> Призер</li>';
+                olympiadsList += '<li class="list-group-item"><img src="img/podium.png" alt="Победитель"> Призер</li>';
             } else {
-                olympiadsList += '<li class="list-group-item"><img src="source/trophy.png" alt="Победитель"> Победитель</li>';
+                olympiadsList += '<li class="list-group-item"><img src="img/trophy.png" alt="Победитель"> Победитель</li>';
             }
     
             olympiadsList += '\
-                            <li class="list-group-item"><img src="source/bookmark.png" alt="Предмет"> '+arr[i]['Subject']+'</li>\
-                            <li class="list-group-item"><img src="source/graduated.png" alt="Класс"> '+arr[i]['Class']+' класс</li>\
-                            <li class="list-group-item"><img src="source/calendar.png" alt="Год"> '+arr[i]['Year']+'</li>\
+                            <li class="list-group-item"><img src="img/bookmark.png" alt="Предмет"> '+arr[i]['Subject']+'</li>\
+                            <li class="list-group-item"><img src="img/graduated.png" alt="Класс"> '+arr[i]['Class']+' класс</li>\
+                            <li class="list-group-item"><img src="img/calendar.png" alt="Год"> '+arr[i]['Year']+'</li>\
                         </ul>\
                     </div>\
                 </div>\
@@ -86,13 +83,13 @@ function fillOlympiads(arr) {
     $('.info-results-olympiads').append('\
         <div class="d-flex justify-content-center mb-3">\
             <a class="showMore">\
-                <img width="50px" src="source/arrow.png" alt="arrow">\
+                <img class="arrow" width="50px" src="img/arrow.png" alt="arrow">\
             </a>\
         </div>');
     $('.info-results-olympiads').append('\
         <div class="d-flex justify-content-center mb-3">\
             <a class="showLess">\
-                <img width="50px" src="source/arrow_up.png" alt="arrow">\
+                <img class="arrow" width="50px" src="img/arrow_up.png" alt="arrow">\
             </a>\
         </div>');
     $('.showLess').hide();

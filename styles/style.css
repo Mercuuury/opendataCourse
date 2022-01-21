@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
-@import url('db.onlinewebfonts.com/c/4fc2b2c96d39638e39651060fddfb639?family=Noto+Sans+Light');
 
 body {
     background-color: #D9EFE2;
@@ -12,7 +11,11 @@ section {
     height: 100vh;
     min-height: 35rem;
 }
-
+.logo {
+    position: absolute;
+    top: 100px;
+    left: calc(50% - 75px);
+}
 .search-box{
 	top: 40%;
 	left: 50%;
@@ -75,12 +78,18 @@ section {
     background-color: #B9E1C9 !important;
 }
 
-#down-arrow {
+.arrow {
     transition: 0.5s;
     cursor: pointer;
 }
-#down-arrow:hover {
+.arrow:hover {
     transform: scale(1.1);
+}
+.arrow.animated {
+    animation: blink 1300ms infinite;
+}
+@keyframes blink {
+    50% { transform: scale(1.1); }
 }
 
 #main-info {
