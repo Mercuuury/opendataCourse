@@ -15,6 +15,12 @@ section {
     position: absolute;
     top: 100px;
     left: calc(50% - 75px);
+    display: block;
+}
+@media (max-width: 767.9px) { 
+    .logo {
+        display: none;
+    } 
 }
 .search-box{
 	top: 40%;

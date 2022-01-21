@@ -220,33 +220,39 @@ function sortOlympiads(type, status, subject, grade, year) {
 |--------------------------------------------------------------------------
 | Для визуализации данных используется Google Charts API.
 | https://developers.google.com/chart
-| Pie Chart отображает общее количество занятых призовых мест.
+| Pie Chart отображает количество участий в олимпиадах по предметам.
 | Area Chart отображает количество занятых призовых мест по годам.
 */
 function visualizePieChart(arr) {
     if (arr.length == 0) {
         return;
     }
-    let winners = 0;
-    let prizeWinners = 0;
-    arr.forEach(olympiad => {
-        if (olympiad['Status'] == 'призёр')
-            prizeWinners++;
-        else
-            winners++;
+
+    function subjects(arr) {
+        let result = [];
+        for (let str of arr) 
+            if (!result.includes(str['Subject'])) 
+                result.push(str['Subject']);
+        return result;
+    }
+
+    subjectsArr = [['Предмет', 'Количество занятых призовых мест']];
+    subjects(arr).forEach(subject => {
+        let count = 0;
+        arr.forEach(olympiad => {
+            if (olympiad['Subject'] == subject)
+                count++;
+        });
+        subjectsArr.push([subject, count]);
     });
 
     google.charts.load('current', {'packages':['corechart']});
     google.charts.setOnLoadCallback(drawChart);
     function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-            ['Призовое место', 'Количество занятых призовых мест'],
-            ['Победитель', winners],
-            ['Призер', prizeWinners]
-        ]);
+        var data = google.visualization.arrayToDataTable(subjectsArr);
 
         var options = {
-            title: 'Количество занятых призовых мест',
+            title: 'Предметы олимпиад',
             legend: {position: 'top'},
             pieHole: 0.4,
             height: 400,
@@ -254,7 +260,6 @@ function visualizePieChart(arr) {
             pieSliceBorderColor: 'transparent',
             backgroundColor: '#D9EFE2',
             fontName: 'Noto Sans Light',
-            colors: ['#FECE00', '#DAD8DB'],
         };
 
       var chart = new google.visualization.PieChart(document.getElementById('piechart_div'));

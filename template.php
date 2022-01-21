@@ -19,7 +19,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 <?php endif; ?>
-                <a style="cursor:default" href="/"><img class="d-block logo" width="150px" src="img/logo.png" alt="Логотип"></a>
+                <!-- <a style="cursor:default" href="/"><img class="logo" width="150px" src="img/logo.png" alt="Логотип"></a> -->
                 <div class="input-group form-container">
                     <h1 class="search-title mb-5 fs-3">Найдите информацию о московских учебных учреждения и сведения об участии в олимпиадах</h1>
                     <input type="text" id="search" name="search" class="form-control search-input" autofocus="autofocus" autocomplete="off" placeholder="Начните вводить название учебного учреждения...">
